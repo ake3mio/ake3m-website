@@ -1,0 +1,43 @@
+@import "reset";
+@import "settings";
+@import "tools";
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'News Cycle', sans-serif;
+  background: #000;
+
+
+  h1 {
+    @include fluid-type(32px, 52px);
+    text-transform: uppercase;
+  }
+
+  h2 {
+    @include fluid-type(28px, 32px);
+    text-transform: uppercase;
+  }
+
+  h3 {
+    @include fluid-type(24px, 28px);
+    text-transform: uppercase;
+  }
+
+  p, ul{
+    @include fluid-type(14px, 24px);
+  }
+
+  a {
+    color: white;
+  }
+}
+
+#__next {
+  height: 100%;
+}
+
+@import "pages/index";
+

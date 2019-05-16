@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="118px" height="110px" viewBox="0 0 118 110" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="About" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="MajorMonoDisplay-Regular, Major Mono Display" font-size="57" font-weight="normal">
+        <g id="Desktop-HD" transform="translate(-66.000000, -59.000000)" fill="#FFFFFF">
+            <g id="Logo-2" transform="translate(64.000000, 38.000000)">
+                <text id="Logo">
+                    <tspan x="0" y="62">Ake</tspan>
+                    <tspan x="0" y="130">3M</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

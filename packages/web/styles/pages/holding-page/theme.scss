@@ -1,0 +1,19 @@
+.holding-page {
+
+  color: #ffffff;
+
+  &__header {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  &__header-text {
+    position: absolute;
+    text-indent: -999px;
+    display: block;
+  }
+
+  &__sub-header {
+    letter-spacing: 2px;
+  }
+}

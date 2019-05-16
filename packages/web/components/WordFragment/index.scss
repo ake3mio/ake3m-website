@@ -1,0 +1,51 @@
+@import "../../styles/tools";
+
+@keyframes fade-in-fragment {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+
+.WordFragment {
+
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  font-family: 'Major Mono Display', monospace;
+
+  &__letter {
+    position: absolute;
+    font-size: 150px;
+    text-shadow: 0 1px 20px #ffffff;
+    top: 0;
+    transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+    animation: fade-in-fragment 1s ease-out forwards;
+
+
+   @media screen and (min-width: 800px){
+     &:nth-child(1) {
+       transform: translate3d(1088px, 404px, 0px) scale(1);
+     }
+
+     &:nth-child(2) {
+       transform: translate3d(753px, 586px, 0px) scale(1);
+     }
+
+     &:nth-child(3) {
+       transform: translate3d(75px, 150px, 0px) scale(0.4);
+     }
+
+     &:nth-child(4) {
+       transform: translate3d(783px, 160px, 0px) scale(1);
+     }
+
+     &:nth-child(5) {
+       transform: translate3d(1364px, 164px, 0px) scale(0.4);
+     }
+   }
+  }
+}

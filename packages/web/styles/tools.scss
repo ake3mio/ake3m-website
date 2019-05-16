@@ -1,0 +1,55 @@
+@import "settings";
+
+
+@function size($factor: 1){
+  @return $base-font-size * $factor;
+}
+
+@mixin aspect-ratio($width, $height, $target: ".content") {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > #{$target} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+@mixin breakpoint($point) {
+  @if $point == desktop {
+    @media (min-width: 80em) { @content ; }
+  }
+  @else if $point == laptop {
+    @media (min-width: 64em) { @content ; }
+  }
+  @else if $point == tablet {
+    @media (min-width: 50em) { @content ; }
+  }
+  @else if $point == phablet {
+    @media (min-width: 37.5em)  { @content ; }
+  }
+  @else if $point == mobileonly {
+    @media (max-width: 37.5em)  { @content ; }
+
+  }
+}
+
+
+@mixin fluid-type($min-font-size: 12px, $max-font-size: 21px, $lower-range: 420px, $upper-range: 900px) {
+
+  font-size: calc(#{$min-font-size} + #{(($max-font-size / ($max-font-size * 0 + 1)) - ($min-font-size / ($min-font-size * 0 + 1)))} * ( (100vw - #{$lower-range}) / #{(($upper-range / ($upper-range * 0 + 1)) - ($lower-range / ($lower-range * 0 + 1)))}));
+
+  @media screen and (max-width: $lower-range) {
+    font-size: $min-font-size;
+  }
+  @media screen and (min-width: $upper-range){
+    font-size: $max-font-size;
+  }
+}

@@ -1,11 +1,11 @@
 const express = require('express')
-const Prismic = require('prismic-javascript')
 const cms = require('./cms/index')
+const config = require('../config')
 
 const app = express()
 
-cms(app);
+cms(app)
 
-app.listen(3000, () => {
-  console.log('Server starting on http://localhost:3000')
+app.listen(config.port, () => {
+  console.log('Server starting on http://localhost:' + config.port)
 })

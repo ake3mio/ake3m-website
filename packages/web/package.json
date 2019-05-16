@@ -1,37 +1,39 @@
 {
-  "name": "server",
+  "name": "@ake3m/web",
   "version": "0.0.1",
   "description": "> TODO: description",
   "author": "akeemfaulkner <contact@akeem.co>",
   "homepage": "https://github.com/ake3mio/ake3m-website#readme",
   "license": "ISC",
-  "main": "lib/server.js",
   "directories": {
-    "lib": "lib",
+    "pages": "pages",
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "pages"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ake3mio/ake3m-website.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
-    "dev": "nodemon",
-    "dev:debug": "node $NODE_DEBUG_OPTION lib/server.js"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
   },
   "bugs": {
     "url": "https://github.com/ake3mio/ake3m-website/issues"
   },
   "dependencies": {
-    "express": "^4.16.4",
-    "express-mung": "^0.5.1",
-    "lru-cache": "^5.1.1",
-    "prismic-javascript": "^2.0.3"
+    "@zeit/next-sass": "^1.0.1",
+    "lodash": "^4.17.11",
+    "next": "^8.1.0",
+    "node-sass": "^4.12.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "nodemon": "^1.19.0"
+    "autoprefixer": "^9.5.1",
+    "postcss-flexbugs-fixes": "^4.1.0"
   }
 }
