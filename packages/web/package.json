@@ -17,15 +17,16 @@
     "url": "git+https://github.com/ake3mio/ake3m-website.git"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "node server",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node server"
   },
   "bugs": {
     "url": "https://github.com/ake3mio/ake3m-website/issues"
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
+    "express": "^4.16.4",
     "lodash": "^4.17.11",
     "next": "^8.1.0",
     "node-sass": "^4.12.0",
