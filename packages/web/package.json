@@ -19,6 +19,7 @@
   "scripts": {
     "dev": "node server",
     "build": "next build",
+    "create-dist": "next build",
     "start": "NODE_ENV=production node server"
   },
   "bugs": {
@@ -29,12 +30,14 @@
     "express": "^4.16.4",
     "lodash": "^4.17.11",
     "next": "^8.1.0",
+    "next-images": "^1.1.1",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "autoprefixer": "^9.5.1",
+    "fs-extra": "^8.0.1",
     "postcss-flexbugs-fixes": "^4.1.0"
   }
 }
