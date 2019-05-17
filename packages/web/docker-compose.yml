@@ -1,0 +1,30 @@
+version: "2.0"
+
+services:
+  web:
+    image: ake3m/web:latest
+    ports:
+      - 3000:3000
+    environment:
+      - "VIRTUAL_HOST=ake3m.com,www.ake3m.com"
+      - "LETSENCRYPT_HOST=ake3m.com,www.ake3m.com"
+      - "LETSENCRYPT_EMAIL=contact@ake3m.com"
+  proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - $HOME/certs:/etc/nginx/certs:ro
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    depends_on:
+      - web
+  letsenctypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    volumes:
+      - $HOME/certs:/etc/nginx/certs:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    volumes_from:
+      - proxy
