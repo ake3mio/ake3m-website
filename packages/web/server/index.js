@@ -1,18 +1,19 @@
 const express = require('express')
 const next = require('next')
+const path = require('path')
 
 const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
+const app = next({ dev, dir: path.join(__dirname, '..') })
 const handle = app.getRequestHandler()
-const { parse } = require('url');
+const { parse } = require('url')
 
 app.prepare().then(() => {
 
   const server = express()
 
   server.get('*', (req, res) => {
-    const parsedUrl = parse(req.url, true);
-    handle(req, res, {...parsedUrl})
+    const parsedUrl = parse(req.url, true)
+    handle(req, res, { ...parsedUrl })
   })
 
   server.listen(3000, err => {
