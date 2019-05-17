@@ -1,7 +1,7 @@
 .holding-page {
-
-  height: 100vh;
-
+  position: relative;
+  height: 100%;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
