@@ -13,6 +13,7 @@ COPY ./server /var/www/website/server
 COPY ./static /var/www/website/static
 COPY ./static /var/www/website/static
 COPY ./next.config.js /var/www/website/next.config.js
+COPY ./public /var/www/website/public
 
 EXPOSE 3000
 
