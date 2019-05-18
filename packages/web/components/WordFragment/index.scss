@@ -9,6 +9,26 @@
   }
 }
 
+@function normalise_to_unit($base, $vpx, $unit) {
+  @return #{((100 / $base) * $vpx) + $unit}
+}
+
+@function letter-x-position($vpx) {
+  // this is the width of the screen this website was developed on
+  // converting values to vw to make things responsive
+  $base: 1632px;
+
+  @return normalise_to_unit($base, $vpx, "vw");
+}
+
+@function letter-y-position($vpx) {
+  // this is the height of the screen this website was developed on
+  // converting values to vh to make things responsive
+  $base: 948px;
+
+  @return normalise_to_unit($base, $vpx, "vh");
+}
+
 .WordFragment {
 
   position: relative;
@@ -26,26 +46,24 @@
     animation: fade-in-fragment 1s ease-out forwards;
 
 
-   @media screen and (min-width: 800px){
-     &:nth-child(1) {
-       transform: translate3d(1088px, 404px, 0px) scale(1);
-     }
+    &:nth-child(1) {
+      transform: translate3d(letter-x-position(1088px), letter-y-position(404px), 0) scale(1);
+    }
 
-     &:nth-child(2) {
-       transform: translate3d(753px, 586px, 0px) scale(1);
-     }
+    &:nth-child(2) {
+      transform: translate3d(letter-x-position(753px), letter-y-position(700px), 0) scale(1);
+    }
 
-     &:nth-child(3) {
-       transform: translate3d(75px, 150px, 0px) scale(0.4);
-     }
+    &:nth-child(3) {
+      transform: translate3d(letter-x-position(75px), letter-y-position(150px), 0) scale(0.4);
+    }
 
-     &:nth-child(4) {
-       transform: translate3d(783px, 160px, 0px) scale(1);
-     }
+    &:nth-child(4) {
+      transform: translate3d(letter-x-position(783px), letter-y-position(160px), 0) scale(1);
+    }
 
-     &:nth-child(5) {
-       transform: translate3d(1364px, 164px, 0px) scale(0.4);
-     }
-   }
+    &:nth-child(5) {
+      transform: translate3d(letter-x-position(1364px), letter-y-position(164px), 0) scale(0.4);
+    }
   }
 }
