@@ -1,6 +1,7 @@
 const express = require('express')
 const next = require('next')
 const path = require('path')
+const redirect = require('./redirect')
 const sitemap = require('./sitemap')
 
 const PROJECT_ROOT_PATH = path.join(__dirname, '..')
@@ -12,6 +13,8 @@ const { parse } = require('url')
 app.prepare().then(() => {
 
   const server = express()
+
+  redirect(server)
 
   server.use(express.static(path.join(PROJECT_ROOT_PATH, 'public')))
 
