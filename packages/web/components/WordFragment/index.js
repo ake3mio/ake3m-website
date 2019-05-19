@@ -1,97 +1,72 @@
 import React, { Component } from 'react'
 import './index.scss'
-import throttle from 'lodash/throttle'
-
-const fontSize = 150
+import LetterConfig from './LetterConfig'
 
 class WordFragment extends Component {
 
   rootRef = React.createRef()
-  yPosition = 1
-  lastY = 0
+  state = {
+    loaded: false,
+  }
 
   render () {
     return (
       <div className="WordFragment" ref={this.rootRef}>
-        <div className="WordFragment__letter">A</div>
-        <div className="WordFragment__letter">K</div>
-        <div className="WordFragment__letter">e</div>
-        <div className="WordFragment__letter">3</div>
-        <div className="WordFragment__letter">M</div>
+        {this.renderLetters(LetterConfig)}
       </div>
     )
   }
 
   componentDidMount () {
-
-    // this.initLetters()
-    // this.onResize = throttle(this.onResize, 0)
-    // window.addEventListener('resize', this.onResize, { passive: true })
+    this.setComponentLoaded()
   }
 
-  componentWillUnmount () {
-    // window.removeEventListener('resize', this.onResize)
-    // cancelAnimationFrame(this.animationLoop)
+  setComponentLoaded () {
+    this.setState({ loaded: true })
   }
 
-  initLetters = () => {
+  renderLetters (letterConfig) {
 
-    const current = this.rootRef.current
-    const { width, height } = current.getBoundingClientRect()
+    const els = []
 
-    const word = 'AKe3M'
+    let index = 0
 
-    requestAnimationFrame(() => {
+    for (let letter in letterConfig) {
 
-      word.split('').forEach((letter) => {
+      if (letterConfig.hasOwnProperty(letter)) {
 
-        const element = document.createElement('div')
+        const config = letterConfig[letter]
 
-        element.classList.add('WordFragment__letter')
+        els.push(this.renderLetter(letter, config, index))
 
-        element.innerText = letter
-
-        this.setElementLocation(element, width, height)
-
-        current.appendChild(element)
-      })
-    })
-  }
-
-  getScale () {
-    const scales = [.4, 1]
-    const index = Math.floor(Math.random() * 2)
-    return scales[index]
-  }
-
-  onResize = () => {
-
-    const current = this.rootRef.current
-
-    requestAnimationFrame(() => {
-      const { width, height } = current.getBoundingClientRect()
-
-      let letterEls = current.getElementsByClassName('WordFragment__letter')
-
-      for (let i = 0; i < letterEls.length; i++) {
-        const element = letterEls[i]
-        this.setElementLocation(element, width, height)
+        index++
       }
-    })
+    }
+
+    return els
   }
 
-  setElementLocation (element, width, height) {
+  renderLetter (letter, config, index) {
 
-    const left = this.clamp(width, fontSize / 2)
-    const top = this.clamp(height)
+    const translate = this.state.loaded
+      ? this.getTranslate3d(config.translate3d)
+      : 'none'
 
-    element.style.transform = `translate3d(${left}px, ${top}px, 0) scale(${this.getScale()})`
+    return (
+      <div
+        key={letter + index}
+        className="WordFragment__letter"
+        style={{ transform: `${translate} scale(${config.scale})` }}
+      >
+        {letter}
+      </div>
+    )
   }
 
-  clamp (max, offset = fontSize) {
-    return Math.max(offset,
-      Math.min(max, Math.floor(Math.random() * max) - offset))
+  getTranslate3d (translate3d) {
+    return `translate3d(${translate3d[0]}, ${translate3d[1]}, ${translate3d[2]})`
   }
+
 }
 
 export default WordFragment

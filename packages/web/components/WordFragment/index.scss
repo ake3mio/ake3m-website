@@ -44,26 +44,5 @@
     top: 0;
     transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1.000);
     animation: fade-in-fragment 1s ease-out forwards;
-
-
-    &:nth-child(1) {
-      transform: translate3d(letter-x-position(1088px), letter-y-position(404px), 0) scale(1);
-    }
-
-    &:nth-child(2) {
-      transform: translate3d(letter-x-position(753px), letter-y-position(700px), 0) scale(1);
-    }
-
-    &:nth-child(3) {
-      transform: translate3d(letter-x-position(75px), letter-y-position(150px), 0) scale(0.4);
-    }
-
-    &:nth-child(4) {
-      transform: translate3d(letter-x-position(783px), letter-y-position(160px), 0) scale(1);
-    }
-
-    &:nth-child(5) {
-      transform: translate3d(letter-x-position(1364px), letter-y-position(164px), 0) scale(0.4);
-    }
   }
 }
