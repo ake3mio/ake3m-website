@@ -1,33 +1,6 @@
 @import "../../styles/tools";
 
-@keyframes fade-in-fragment {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.5;
-  }
-}
-
-@function normalise_to_unit($base, $vpx, $unit) {
-  @return #{((100 / $base) * $vpx) + $unit}
-}
-
-@function letter-x-position($vpx) {
-  // this is the width of the screen this website was developed on
-  // converting values to vw to make things responsive
-  $base: 1632px;
-
-  @return normalise_to_unit($base, $vpx, "vw");
-}
-
-@function letter-y-position($vpx) {
-  // this is the height of the screen this website was developed on
-  // converting values to vh to make things responsive
-  $base: 948px;
-
-  @return normalise_to_unit($base, $vpx, "vh");
-}
+@include fade-in('fragment', 0, 0.5)
 
 .WordFragment {
 
