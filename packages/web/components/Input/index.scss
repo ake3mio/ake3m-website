@@ -1,0 +1,13 @@
+.Input {
+  height: 34px;
+  width: 100%;
+  max-width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  border: none;
+  border-left: 5px solid #868686;
+
+  &--has-error {
+    border-color: red;
+  }
+}

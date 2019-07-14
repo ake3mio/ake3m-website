@@ -1,0 +1,28 @@
+.ContactForm {
+  width: 400px;
+  max-width: 100%;
+  &__input-group {
+    margin-bottom: 16px;
+  }
+
+  &__submit-btn {
+    float: right;
+  }
+
+  &__input-error {
+    text-transform: capitalize;
+  }
+
+  &__ReCAPTCHA {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+  }
+
+  &__error {
+    background-color: red;
+    color: #fff;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+}

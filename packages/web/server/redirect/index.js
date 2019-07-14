@@ -1,6 +1,6 @@
 module.exports = function (server) {
   server.all(/.*/, function (req, res, next) {
-    const host = req.header('host')
+    const host = req.header('host');
     if (host.match(/^www\..*/i)) {
       next()
     } else {

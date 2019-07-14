@@ -1,0 +1,64 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:9.8.0
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - setup_remote_docker:
+          docker_layer_caching: true
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "./package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: npm install
+
+      - run: cd ~/repo/packages/web && npm run build
+
+      - run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+          cd ~/repo/packages/web
+          docker build -f docker/Dockerfile -t ake3m/web:$CIRCLE_TAG .
+
+          cd ~/repo/packages/api
+          docker build -f docker/Dockerfile -t ake3m/api:$CIRCLE_TAG .
+
+      - run: docker push ake3m/web:$CIRCLE_TAG
+
+      - run: docker push ake3m/api:$CIRCLE_TAG
+
+      - save_cache:
+          key: build-{{ checksum "./packages/web/.next/BUILD_ID" }}
+          paths:
+            - ./packages/web
+
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^.*/

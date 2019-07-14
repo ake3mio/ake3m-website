@@ -2,10 +2,6 @@
 @import "settings";
 @import "tools";
 
-html, body {
-  height: 100%;
-}
-
 body {
   font-family: 'News Cycle', sans-serif;
   background: #000;
@@ -14,6 +10,7 @@ body {
   h1 {
     @include fluid-type(32px, 52px);
     text-transform: uppercase;
+    margin: 16px 0 32px;
   }
 
   h2 {
@@ -26,18 +23,33 @@ body {
     text-transform: uppercase;
   }
 
-  p, ul{
+  p, ul {
     @include fluid-type(14px, 24px);
+  }
+
+  p {
+    margin: 16px 0;
   }
 
   a {
     color: white;
   }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
 }
 
-#__next {
-  height: 100%;
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
-@import "pages/index";
-
+.Logo {
+  width: 45px;
+  @include breakpoint(tablet) {
+    width: 118px;
+  }
+}

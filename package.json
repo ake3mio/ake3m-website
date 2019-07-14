@@ -3,5 +3,9 @@
   "private": true,
   "devDependencies": {
     "lerna": "3.13.4"
+  },
+  "scripts": {
+    "dev": "lerna run dev --parallel --stream",
+    "postinstall": "lerna bootstrap"
   }
 }

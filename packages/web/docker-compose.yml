@@ -1,6 +1,19 @@
 version: "2.0"
 
 services:
+  api:
+    image: ake3m/api:latest
+    ports:
+      - 3002:3002
+    environment:
+      - "VIRTUAL_HOST=api.ake3m.com"
+      - "LETSENCRYPT_HOST=api.ake3m.com"
+      - "LETSENCRYPT_EMAIL=contact@ake3m.com"
+      - "AKE3M_CMS_ACCESS_TOKEN=${AKE3M_CMS_ACCESS_TOKEN}"
+      - "AKE3M_CMS_ENDPOINT=${AKE3M_CMS_ENDPOINT}"
+      - "AKE3M_RECAPCHA_SECRET=${AKE3M_RECAPCHA_SECRET}"
+      - "AKE3M_EMAIL=${AKE3M_EMAIL}"
+      - "AKE3M_EMAIL_PASSWORD=${AKE3M_EMAIL_PASSWORD}"
   web:
     image: ake3m/web:latest
     ports:
@@ -9,6 +22,9 @@ services:
       - "VIRTUAL_HOST=ake3m.com,www.ake3m.com"
       - "LETSENCRYPT_HOST=ake3m.com,www.ake3m.com"
       - "LETSENCRYPT_EMAIL=contact@ake3m.com"
+      - "API_URL=http://api.ake3m.com"
+    depends_on:
+      - api
   proxy:
     image: jwilder/nginx-proxy
     ports:

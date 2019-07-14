@@ -15,7 +15,28 @@
     font-size: 150px;
     text-shadow: 0 1px 20px #ffffff;
     top: 0;
-    transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-    animation: fade-in-fragment 1s ease-out forwards;
+    transition: transition 1s cubic-bezier(0.645, 0.045, 0.355, 1.000), all 1000ms ease-out;
+    animation: float  3s ease-in-out 1000ms infinite;
+    animation-delay: 1000ms;
+    opacity: 0.5;
+    cursor: default;
+    user-select: none;
+
+    &:hover {
+      opacity: 0.9;
+      animation: none;
+    }
+  }
+}
+
+@keyframes float {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -10px;
+  }
+  100% {
+    top: 0;
   }
 }

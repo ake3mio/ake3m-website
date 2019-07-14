@@ -1,0 +1,14 @@
+@import "../../styles/tools";
+
+.Dots {
+  display: flex;
+
+  &__dot {
+    $dimensions: 4px;
+    width: $dimensions;
+    height: $dimensions;
+    border-radius: 100%;
+    background: #fff;
+    margin-right: $dimensions * 2;
+  }
+}

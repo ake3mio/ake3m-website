@@ -1,0 +1,12 @@
+.Button {
+  display: block;
+  height: 45px;
+  min-width: 100px;
+  appearance: none;
+  opacity: 1;
+  transition: opacity 250ms ease-out;
+
+  &[disabled] {
+    opacity: 0.6;
+  }
+}

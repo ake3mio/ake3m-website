@@ -1,0 +1,35 @@
+.Back {
+  font-family: 'Major Mono Display', monospace;
+  font-size: 32px;
+  color: #fff;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+
+  &__line {
+    width: 128px;
+    height: 32px;
+    background: url("/static/images/line.png") no-repeat 0 14px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate3d(0, 0, 0);
+    transition: 250ms ease-out;
+  }
+
+  &__button {
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+    &:hover {
+      .Back__line {
+        transform: translate3d(-14px, 0, 0);
+      }
+    }
+
+  }
+
+}
+

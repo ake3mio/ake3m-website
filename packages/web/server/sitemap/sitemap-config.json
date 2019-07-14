@@ -2,7 +2,19 @@
   "urls": [
     {
       "loc": "/",
-      "lastmod": "2019-05-18",
+      "lastmod": "2019-06-13",
+      "changefreq": "monthly",
+      "priority" : "1"
+    },
+    {
+      "loc": "/about",
+      "lastmod": "2019-06-13",
+      "changefreq": "monthly",
+      "priority" : "1"
+    },
+    {
+      "loc": "/contact",
+      "lastmod": "2019-06-13",
       "changefreq": "monthly",
       "priority" : "1"
     }

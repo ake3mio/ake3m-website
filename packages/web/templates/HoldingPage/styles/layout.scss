@@ -1,0 +1,19 @@
+.HoldingPage {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .Logo {
+    margin: 32px;
+  }
+
+  .WordFragment {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+}

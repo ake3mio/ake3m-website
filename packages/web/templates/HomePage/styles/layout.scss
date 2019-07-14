@@ -1,0 +1,18 @@
+.HomePage {
+  width: 100%;
+
+  &__background {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    max-width: 100%;
+    height: auto;
+  }
+
+  .WordFragment {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+}

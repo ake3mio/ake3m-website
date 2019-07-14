@@ -1,0 +1,20 @@
+.LinkHomeLogo {
+  &__header {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__header-text {
+    position: absolute;
+    text-indent: -999px;
+    display: block;
+  };
+
+  .Logo {
+    margin: 32px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+  }
+}
