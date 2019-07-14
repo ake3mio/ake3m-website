@@ -2,7 +2,7 @@ version: "2.0"
 
 services:
   api:
-    image: ake3m/api:latest
+    image: "ake3m/api:$VERSION"
     ports:
       - 3002:3002
     environment:
@@ -15,7 +15,7 @@ services:
       - "AKE3M_EMAIL=${AKE3M_EMAIL}"
       - "AKE3M_EMAIL_PASSWORD=${AKE3M_EMAIL_PASSWORD}"
   web:
-    image: ake3m/web:latest
+    image: "ake3m/web:$VERSION"
     ports:
       - 3000:3000
     environment:
