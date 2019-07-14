@@ -22,6 +22,10 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
 
+      - add_ssh_keys:
+          fingerprints:
+            - "c8:1d:cd:2b:5a:72:64:cd:c4:c2:81:1f:8a:b5:d2:92"
+
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -45,6 +49,10 @@ jobs:
       - run: docker push ake3m/web:$CIRCLE_TAG
 
       - run: docker push ake3m/api:$CIRCLE_TAG
+
+      - run:
+          command: |
+            ssh $SSH_USER@$SSH_HOST "export VERSION=$CIRCLE_TAG && docker-compose up -d"
 
       - save_cache:
           key: build-{{ checksum "./packages/web/.next/BUILD_ID" }}
