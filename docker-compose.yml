@@ -22,7 +22,7 @@ services:
       - "VIRTUAL_HOST=ake3m.com,www.ake3m.com"
       - "LETSENCRYPT_HOST=ake3m.com,www.ake3m.com"
       - "LETSENCRYPT_EMAIL=contact@ake3m.com"
-      - "API_URL=http://api.ake3m.com"
+      - "API_URL=https://api.ake3m.com"
     depends_on:
       - api
   proxy:
