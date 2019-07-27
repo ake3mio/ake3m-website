@@ -15,7 +15,7 @@
   },
   "scripts": {
     "dev": "nodemon server",
-    "build": "API_URL=http://api.ake3m.com next build",
+    "build": "next build",
     "start": "NODE_ENV=production node server"
   },
   "bugs": {

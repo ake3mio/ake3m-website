@@ -1,1 +1,11 @@
 $base-font-size: 16px;
+
+$heading-transition: (
+        duration: 200,
+        delay: 550
+);
+
+$card-menu-item-transition: (
+        duration: 450,
+        delay: map_get($heading-transition, duration) + map_get($heading-transition, delay)
+);

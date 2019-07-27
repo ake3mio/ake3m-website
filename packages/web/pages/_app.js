@@ -70,9 +70,6 @@ class MyApp extends App {
                 <PageTransition timeout={800} classNames="page-transition">
                     <Component {...pageProps} key={router.route}/>
                 </PageTransition>
-                {/*<style jsx global>{`*/}
-
-        {/*`}</style>*/}
             </Container>
         )
     }

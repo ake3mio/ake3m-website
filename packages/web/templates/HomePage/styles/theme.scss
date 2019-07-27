@@ -6,3 +6,25 @@
     opacity: .2;
   }
 }
+
+
+.page-transition-enter .HomePage {
+  .CardMenuItem {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0) !important;
+    transition: 0ms;
+  }
+}
+
+.page-transition-enter-done .HomePage {
+  .CardMenuItem:not(.CardMenuItem--is-selected) {
+    opacity: 1;
+  }
+}
+
+
+.page-transition-exit .CardMenuItem:not(.CardMenuItem--is-selected) {
+  $delay: map_get($heading-transition, delay);
+  transition: opacity #{$delay}ms ease-out;
+  opacity: 0;
+}
