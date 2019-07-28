@@ -6,6 +6,11 @@ import Img from "../Img";
 import './index.scss';
 import Heading from "../Heading";
 
+const images = {
+    'about': require('./images/about.png'),
+    'contact': require('./images/contact-me.png')
+};
+
 class CardMenuItem extends Component {
 
     root = React.createRef();
@@ -30,8 +35,7 @@ class CardMenuItem extends Component {
                     className={this.rootClassName}
                     onClick={this.onClick}
                 >
-
-                    <Img {...image} onLoad={this.onImageLoad}/>
+                    <Img {...image} url={images[slug]} onLoad={this.onImageLoad}/>
                     <Heading {...title[0]} type="heading2"/>
                 </a>
             </Link>

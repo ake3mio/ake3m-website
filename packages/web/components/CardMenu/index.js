@@ -5,12 +5,6 @@ import WordFragment from "../WordFragment";
 
 class CardMenu extends Component {
 
-    itemsLeft = 0;
-
-    state = {
-        selectedMenuItem: null
-    };
-
     render() {
         return (
             <div className="CardMenu">

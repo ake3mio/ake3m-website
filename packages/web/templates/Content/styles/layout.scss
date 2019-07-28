@@ -4,6 +4,15 @@
   box-sizing: border-box;
   padding-top: 160px;
 
+  &__head {
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
+
   &__main {
     padding: 32px;
     box-sizing: border-box;
@@ -20,6 +29,7 @@
     right: 0;
     height: 100%;
     transform: translate3d($image-small-x, 0, 0);
+    z-index: 2;
 
     .Img {
       width: $image-width;

@@ -12,7 +12,7 @@ class WordFragment extends Component {
 
   render () {
     return (
-      <div className="WordFragment" onMouseMove={this.nudgeLetters}>
+      <div className="WordFragment" onMouseMove={this.nudgeLetters} onTouchMove={this.nudgeLetters}>
         {this.renderLetters(LetterConfig)}
       </div>
     )
@@ -34,15 +34,13 @@ class WordFragment extends Component {
 
     this.letterRefs = [];
 
-    const letterCount = Object.keys(letterConfig).length;
-
     for (let letter in letterConfig) {
 
       if (letterConfig.hasOwnProperty(letter)) {
 
         const config = letterConfig[letter];
 
-        els.push(this.renderLetter(letter, config, index, letterCount));
+        els.push(this.renderLetter(letter, config, index));
 
         index++
       }
@@ -51,7 +49,7 @@ class WordFragment extends Component {
     return els
   }
 
-  renderLetter (letter, config, index, letterCount) {
+  renderLetter (letter, config, index) {
 
     const translate = this.state.loaded
       ? this.getTranslate3d(config.translate3d)
@@ -61,8 +59,7 @@ class WordFragment extends Component {
       <div
         key={letter + index}
         className="WordFragment__letter"
-        onTransitionEnd={event => this.addLetterRef(event.target, config,
-          letterCount)}
+        onTransitionEnd={event => this.addLetterRef(event.target, config)}
         style={{ transform: `${translate} scale(${config.scale})` }}
       >
         {letter}
@@ -70,7 +67,7 @@ class WordFragment extends Component {
     )
   }
 
-  addLetterRef (letterEl, config, letterCount) {
+  addLetterRef (letterEl, config) {
 
     this.letterRefs.push({
       element: letterEl,
@@ -81,39 +78,41 @@ class WordFragment extends Component {
 
   nudgeLetters = (event) => {
 
+    const touches = event.changedTouches ? event.changedTouches[0] : event;
+
     if (this.letterRefs.length) {
 
       this.letterRefs.forEach(letterRef => {
 
-        const isAtEnd = event.clientX <=
+        const isAtEnd = touches.clientX <=
           (letterRef.boundingRect.x + letterRef.boundingRect.width);
-        const withinWidth = event.clientX >= letterRef.boundingRect.x && isAtEnd;
+        const withinWidth = touches.clientX >= letterRef.boundingRect.x && isAtEnd;
 
-        const isAtBottom = event.clientY <=
+        const isAtBottom = touches.clientY <=
           (letterRef.boundingRect.y + letterRef.boundingRect.height);
 
-        const withinHeight = event.clientY >= letterRef.boundingRect.y &&
+        const withinHeight = touches.clientY >= letterRef.boundingRect.y &&
           isAtBottom;
 
         if (withinWidth && withinHeight) {
 
-          const t = Math.abs(event.clientY -
+          const t = Math.abs(touches.clientY -
             (letterRef.boundingRect.y + letterRef.boundingRect.height));
 
-          const w = Math.abs(event.clientX -
+          const w = Math.abs(touches.clientX -
             (letterRef.boundingRect.x + letterRef.boundingRect.width));
 
           let y, x;
           if (t < letterRef.boundingRect.height / 2) {
-            y = (letterRef.boundingRect.y - event.clientY) * .25
+            y = (letterRef.boundingRect.y - touches.clientY) * .25
           } else {
-            y = (event.clientY - letterRef.boundingRect.y) * .25
+            y = (touches.clientY - letterRef.boundingRect.y) * .25
           }
 
           if (w < letterRef.boundingRect.width / 2) {
-            x = (letterRef.boundingRect.x - event.clientX) * .25
+            x = (letterRef.boundingRect.x - touches.clientX) * .25
           } else {
-            x = (event.clientX - letterRef.boundingRect.x) * .25
+            x = (touches.clientX - letterRef.boundingRect.x) * .25
           }
 
           letterRef.element.style.top = `${y}px`;

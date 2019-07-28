@@ -62,12 +62,6 @@
       padding-left: 0;
     }
   }
-
-  &--is-touch {
-    canvas {
-      pointer-events: none;
-    }
-  }
 }
 
 

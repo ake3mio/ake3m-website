@@ -1,8 +1,11 @@
 import React from 'react'
 import Head from 'next/head'
+import Router from 'next/router'
 import App, { Container } from 'next/app'
 import { PageTransition } from 'next-page-transitions'
 import '../styles/index.scss'
+
+const TRANSITION_TIMEOUT = 800;
 
 class MyApp extends App {
     static async getInitialProps({ Component, ctx }) {
@@ -67,7 +70,7 @@ class MyApp extends App {
                           content="Full Stack Software Engineer based in London. Tackling all things javascript and java."/>
                     <meta name="robots" content="index, follow"/>
                 </Head>
-                <PageTransition timeout={800} classNames="page-transition">
+                <PageTransition timeout={TRANSITION_TIMEOUT} classNames="page-transition">
                     <Component {...pageProps} key={router.route}/>
                 </PageTransition>
             </Container>
@@ -87,6 +90,16 @@ class MyApp extends App {
                 document.addEventListener('scroll', noScrollOnce);
             }
         }
+
+
+        const handleRouteChange = () => {
+
+            setTimeout(() =>
+                    window.scroll(0, 0),
+                TRANSITION_TIMEOUT);
+        };
+
+        Router.events.on('routeChangeComplete', handleRouteChange)
 
 
     }

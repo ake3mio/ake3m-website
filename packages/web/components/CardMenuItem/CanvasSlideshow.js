@@ -28,13 +28,14 @@ export default function CanvasSlideshow(options) {
         transparent: true
     });
 
+    renderer.plugins.interaction.autoPreventDefault = false;
+
     const stage = new PIXI.Container();
     const displacementSprite = new PIXI.Sprite.from(options.displacementImage);
     const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
 
 
     this.initPixi = function () {
-
         // Add canvas to the HTML
         renderer.view.width = options.stageWidth;
         renderer.view.height = options.stageHeight;
@@ -123,12 +124,17 @@ export default function CanvasSlideshow(options) {
         cancelAnimationFrame(rafID);
     };
 
-    stage.pointerover = pointerover;
-    stage.pointerout = pointerout;
+    stage.mouseover = pointerover;
+    stage.touchmove = pointerover;
+
+    stage.mouseout = pointerout;
+    stage.touchendoutside = pointerout;
 
     options.eventSubscribers.forEach(el => {
         el.onmouseenter = pointerover;
-        el.onmouseleave = pointerout;
+        el.ontouchmove = pointerout;
+        el.onmouseenter = pointerover;
+        el.touchend = pointerout;
     });
 
     this.init();
