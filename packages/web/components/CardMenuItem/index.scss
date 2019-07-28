@@ -75,7 +75,10 @@
   transition: transform #{$duration}ms cubic-bezier(0.39, -0.63, 0.58, 1) #{$delay}ms, opacity 250ms #{$delay + 200}ms;
 
   opacity: 0;
-  transform: translate3d(0, 100%, 0) !important;
+
+  @include breakpoint(tablet) {
+    transform: translate3d(0, 100%, 0) !important;
+  }
 
   .Heading {
     $delay: map_get($heading-transition, delay);

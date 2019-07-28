@@ -5,12 +5,9 @@
   width: 100%;
   box-sizing: border-box;
   padding: 128px 64px;
-  //min-height: 120vh;
   .CardMenuItem {
 
     margin: 0 auto;
-
-
 
     @include breakpoint(tablet) {
       &:nth-child(2) {
