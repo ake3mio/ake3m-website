@@ -19,8 +19,6 @@ class CardMenuItem extends Component {
         offset: 0.8
     };
 
-    loaded = false;
-
     state = {
         isMobile: true,
         touch: false
@@ -111,37 +109,25 @@ class CardMenuItem extends Component {
 
     onImageLoad = () => {
 
-        if (this.loaded) {
-            return;
-        }
-
-        import("./CanvasSlideshow").then(({ default: CanvasSlideshow }) => {
+        import("./Displacement").then(({ default: Displacement }) => {
 
             const headerEl = this.root.current.querySelector(".Heading");
 
-            const { item: { image: { dimensions, url } } } = this.props;
+            const { item: { image: { dimensions }, slug } } = this.props;
 
-            const image = new Image();
-            image.crossOrigin = "Anonymous";
-
-            image.onload = () => {
-                this.convasSlideShow = new CanvasSlideshow({
-                    sprites: [image.src],
-                    displacementImage: require('./images/clouds.jpg'),
-                    autoPlay: true,
-                    autoPlaySpeed: [0.3, 0.3],
-                    displaceScale: [800, 500],
-                    displaceAutoFit: true,
-                    dispatchPointerOver: true,
-                    parent: this.root.current,
-                    stageWidth: dimensions.width,
-                    stageHeight: dimensions.height,
-                    eventSubscribers: [headerEl]
-                });
-
-                this.loaded = true;
-            };
-            image.src = url;
+            this.convasSlideShow = new Displacement({
+                sprites: [images[slug]],
+                displacementImage: require('./images/clouds.jpg'),
+                autoPlay: true,
+                autoPlaySpeed: [0.3, 0.3],
+                displaceScale: [800, 500],
+                displaceAutoFit: true,
+                dispatchPointerOver: true,
+                parent: this.root.current,
+                stageWidth: dimensions.width,
+                stageHeight: dimensions.height,
+                eventSubscribers: [headerEl]
+            });
 
         })
     };

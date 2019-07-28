@@ -1,7 +1,7 @@
 import { TweenMax } from "gsap/umd/TweenMax";
 import * as PIXI from "pixi.js";
 
-export default function CanvasSlideshow(options) {
+export default function Displacement(options) {
 
     const that = this;
     let rafID, mouseX = 0, mouseY = 0;
