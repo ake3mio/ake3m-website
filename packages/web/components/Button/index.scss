@@ -5,6 +5,8 @@
   appearance: none;
   opacity: 1;
   transition: opacity 250ms ease-out;
+  background: #fff;
+  border: none;
 
   &[disabled] {
     opacity: 0.6;

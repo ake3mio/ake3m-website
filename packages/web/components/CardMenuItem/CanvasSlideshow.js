@@ -123,12 +123,17 @@ export default function CanvasSlideshow(options) {
         cancelAnimationFrame(rafID);
     };
 
-    stage.pointerover = pointerover;
-    stage.pointerout = pointerout;
+    stage.mouseover = pointerover;
+    stage.touchmove = pointerover;
+
+    stage.mouseout = pointerout;
+    stage.touchendoutside = pointerout;
 
     options.eventSubscribers.forEach(el => {
         el.onmouseenter = pointerover;
-        el.onmouseleave = pointerout;
+        el.ontouchmove = pointerout;
+        el.onmouseenter = pointerover;
+        el.touchend = pointerout;
     });
 
     this.init();
