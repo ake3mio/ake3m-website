@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import client from "../core/http/client";
-import Content from "../components/Content";
+import Content from '../templates/Content';
 
 class Contact extends Component {
     static getInitialProps = async () => {

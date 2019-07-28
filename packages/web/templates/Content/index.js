@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Img from "../Img";
-import './index.scss';
-import Heading from "../Heading";
-import Back from "../Back";
-import Dots from '../Dots';
+import './styles/index.scss';
 import { RichText } from 'prismic-reactjs';
-import LinkHomeLogo from '../LinkHomeLogo';
-import ContentFactory from '../ContentFactory';
+import LinkHomeLogo from '../../components/LinkHomeLogo';
+import Heading from '../../components/Heading';
+import ContentFactory from '../../components/ContentFactory';
+import Dots from '../../components/Dots';
+import Back from '../../components/Back';
+import Img from '../../components/Img';
 
 class Content extends Component {
 
