@@ -52,7 +52,7 @@ jobs:
 
       - run:
           command: |
-            ssh $SSH_USER@$SSH_HOST -oStrictHostKeyChecking=no "source ~/.bash_profile && export VERSION=$CIRCLE_TAG && docker-compose up -d"
+            ssh $SSH_USER@$SSH_HOST -oStrictHostKeyChecking=no "source ~/.bash_profile && export VERSION=$CIRCLE_TAG && export AKE3M_CACHE_CLEAR_KEY=$AKE3M_CACHE_CLEAR_KEY && docker-compose up -d"
 
       - save_cache:
           key: build-{{ checksum "./packages/web/.next/BUILD_ID" }}

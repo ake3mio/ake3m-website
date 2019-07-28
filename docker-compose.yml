@@ -14,6 +14,7 @@ services:
       - "AKE3M_RECAPCHA_SECRET=${AKE3M_RECAPCHA_SECRET}"
       - "AKE3M_EMAIL=${AKE3M_EMAIL}"
       - "AKE3M_EMAIL_PASSWORD=${AKE3M_EMAIL_PASSWORD}"
+      - "AKE3M_CACHE_CLEAR_KEY=${AKE3M_CACHE_CLEAR_KEY}"
   web:
     image: "ake3m/web:$VERSION"
     ports:

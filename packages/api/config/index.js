@@ -13,5 +13,8 @@ module.exports = {
     email: {
         user: process.env.AKE3M_EMAIL,
         password: process.env.AKE3M_EMAIL_PASSWORD
+    },
+    cache: {
+        clear_key: process.env.AKE3M_CACHE_CLEAR_KEY,
     }
 };
