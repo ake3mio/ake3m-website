@@ -43,6 +43,7 @@ class ContactForm extends Component {
         form: formState(),
         submitted: false,
         submitting: false,
+        gsize: null
     };
 
     render() {
@@ -120,13 +121,16 @@ class ContactForm extends Component {
                         )}
                     </div>
                     <div className="ContactForm__ReCAPTCHA">
-                        <ReCAPTCHA
-                            theme="dark"
-                            ref={this.recaptchaRef}
-                            sitekey="6Lcts5YUAAAAANPdhYMfVZfzYVgOa-RBnw0n5KDC"
-                            onExpired={this.resetReCAPTCHA}
-                            onChange={this.setReCAPTCHA}
-                        />
+                        {this.state.gsize && (
+                            <ReCAPTCHA
+                                theme="dark"
+                                ref={this.recaptchaRef}
+                                sitekey="6Lcts5YUAAAAANPdhYMfVZfzYVgOa-RBnw0n5KDC"
+                                onExpired={this.resetReCAPTCHA}
+                                onChange={this.setReCAPTCHA}
+                                size={this.state.gsize}
+                            />
+                        )}
                     </div>
                     {error && (
                         <div className="ContactForm__error">
@@ -258,6 +262,33 @@ class ContactForm extends Component {
 
             this.setState(nextState, () => callback(event));
 
+        }
+    };
+
+    componentDidMount() {
+        window.addEventListener('resize', this.onResize)
+        this.onResize();
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.onResize)
+    }
+
+    onResize = () => {
+        const smallMobileWidth = 375;
+
+        const isCompact = this.state.gsize === 'compact';
+        const noSize = !this.state.gsize;
+
+        const setSize = (gsize) => this.setState({gsize: null}, () => {
+            this.resetReCAPTCHA();
+            this.setState({ gsize })
+        });
+
+        if (window.innerWidth <= smallMobileWidth && (!isCompact || noSize)) {
+            return setSize('compact');
+        } else if (window.innerWidth > smallMobileWidth && (isCompact || noSize)) {
+            return setSize('normal');
         }
     }
 }
