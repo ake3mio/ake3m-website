@@ -10,18 +10,20 @@ import Img from '../../components/Img';
 
 class Content extends Component {
 
-    contentRef = React.createRef();
+    rootRef = React.createRef();
 
     render() {
 
-        const { content: { content, image, title }, pageType } = this.props;
+        const { content: { content, image, title } } = this.props;
 
         const imageStyles = { minHeight: image.dimensions.height };
 
         return (
-            <div className="Content">
-                <LinkHomeLogo/>
-                <div className="Content__main" ref={this.contentRef}>
+            <div className="Content" ref={this.rootRef}>
+                <div className="Content__head">
+                    <LinkHomeLogo/>
+                </div>
+                <div className="Content__main">
                     <Heading {...title[0]}/>
                     <RichText
                         render={content}
@@ -44,7 +46,7 @@ class Content extends Component {
     }
 
     componentDidMount() {
-        this.descendants = this.getDescendants();
+        this.logo = this.rootRef.current.querySelector('.LinkHomeLogo .Logo');
         this.onScroll();
         window.addEventListener('scroll', this.onScroll, { passive: true })
     }
@@ -54,33 +56,16 @@ class Content extends Component {
     }
 
     onScroll = () => {
-        this.descendants.forEach(({ element, offsetTop, getOpacity }, index) => {
-
-            if (offsetTop < window.scrollY) {
-                element.style.opacity = getOpacity(index);
-            } else {
-                element.style.opacity = '1';
-            }
-        });
+        this.setLogoScale();
     };
 
-    getDescendants = () => [...this.contentRef.current.children].map(descendant => {
-
-        const offsetTop = descendant.offsetTop - 160;
-
-        return {
-            element: descendant,
-            offsetTop: offsetTop,
-            getOpacity: (index) => {
-
-                const scrollY = window.scrollY === 0 ? 1 : window.scrollY;
-                const diff = index === 0 ? 10 : 200;
-                const delta = Math.abs(((offsetTop - diff) / scrollY));
-
-                return delta
-            }
-        };
-    });
+    setLogoScale() {
+        const min = 0.38;
+        const logoHeight = 100;
+        const intrinsicProportion = (min / logoHeight);
+        const scale = Math.max(min, 1 - (intrinsicProportion * window.scrollY));
+        this.logo.style.transform = `scale(${scale})`;
+    }
 }
 
 

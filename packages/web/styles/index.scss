@@ -48,8 +48,5 @@ body {
 }
 
 .Logo {
-  width: 45px;
-  @include breakpoint(tablet) {
-    width: 118px;
-  }
+  width: 118px;
 }

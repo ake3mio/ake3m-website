@@ -1,6 +1,15 @@
 .Content {
-
   color: #ffffff;
+
+  &__head {
+    background: #000;
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
 
   &__main {
     transition: opacity 1000ms ease-out;
@@ -11,6 +20,10 @@
 
   &__image-aside {
     transform: translate3d($image-small-x, 0, 0);
+  }
+
+  .LinkHomeLogo .Logo {
+    transform-origin: top left;
   }
 
 }

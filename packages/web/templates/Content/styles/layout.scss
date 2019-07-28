@@ -1,12 +1,8 @@
 .Content {
 
   position: relative;
-  padding-top: 60px;
   box-sizing: border-box;
-
-  @include breakpoint(tablet) {
-    padding-top: 160px;
-  }
+  padding-top: 160px;
 
   &__main {
     padding: 32px;
