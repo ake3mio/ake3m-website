@@ -15,8 +15,8 @@
   },
   "scripts": {
     "dev": "nodemon server",
-    "build": "next build",
-    "start": "NODE_ENV=production node server"
+    "build": "next build && cp -fr ./static/favicons ./.next/static",
+    "start": "NODE_ENV=production ASSET_PREFIX=$(cat .next/BUILD_ID) node server"
   },
   "bugs": {
     "url": "https://github.com/ake3mio/ake3m-website/issues"

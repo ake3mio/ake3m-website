@@ -3,9 +3,13 @@ import Head from 'next/head'
 import Router from 'next/router'
 import App, { Container } from 'next/app'
 import { PageTransition } from 'next-page-transitions'
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig();
+
 import '../styles/index.scss'
 
-const TRANSITION_TIMEOUT = 800;
+const TRANSITION_TIMEOUT = 1000;
 
 class MyApp extends App {
     static async getInitialProps({ Component, ctx }) {
@@ -21,6 +25,8 @@ class MyApp extends App {
     render() {
         const { Component, pageProps, router } = this.props;
 
+        const assetPrefix = publicRuntimeConfig.ASSET_PREFIX ? `/${publicRuntimeConfig.ASSET_PREFIX}` : '';
+
         return (
             <Container>
                 <Head>
@@ -31,25 +37,25 @@ class MyApp extends App {
                     />
                     <link
                         rel="apple-touch-icon" sizes="180x180"
-                        href="/static/favicons/apple-touch-icon.png"
+                        href={`${assetPrefix}/_next/static/favicons/apple-touch-icon.png`}
                     />
                     <link
                         rel="icon" type="image/png" sizes="32x32"
-                        href="/static/favicons/favicon-32x32.png"
+                        href={`${assetPrefix}/_next/static/favicons/favicon-32x32.png`}
                     />
                     <link
                         rel="icon"
                         type="image/png"
                         sizes="16x16"
-                        href="/static/favicons/favicon-16x16.png"
+                        href={`${assetPrefix}/_next/static/favicons/favicon-16x16.png`}
                     />
                     <link
                         rel="manifest"
-                        href="/static/favicons/site.webmanifest"
+                        href={`${assetPrefix}/_next/static/favicons/site.webmanifest`}
                     />
                     <link
                         rel="shortcut icon"
-                        href="/static/favicons/favicon.ico"
+                        href={`${assetPrefix}/_next/static/favicons/favicon.ico`}
                     />
                     <meta
                         name="msapplication-TileColor"
@@ -57,7 +63,7 @@ class MyApp extends App {
                     />
                     <meta
                         name="msapplication-config"
-                        content="/static/favicons/browserconfig.xml"
+                        content={`${assetPrefix}/_next/static/favicons/browserconfig.xml`}
                     />
                     <meta
                         name="theme-color"
