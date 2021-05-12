@@ -32,7 +32,7 @@
     "express": "^4.16.4",
     "express-mung": "^0.5.1",
     "lru-cache": "^5.1.1",
-    "nodemailer": "^6.2.1",
+    "nodemailer": "^6.4.16",
     "prismic-javascript": "^2.0.3"
   },
   "devDependencies": {
